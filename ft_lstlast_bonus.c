@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 10:07:24 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/10 10:31:59 by obelkhad         ###   ########.fr       */
+/*   Created: 2021/11/14 00:18:21 by obelkhad          #+#    #+#             */
+/*   Updated: 2021/11/15 09:52:26 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	return ((c >= '0' && c <= '9'));
+	t_list	*current;
+
+	if (lst)
+	{
+		current = lst;
+		while (current->next)
+			current = current->next;
+		return (current);
+	}
+	return (0);
 }
