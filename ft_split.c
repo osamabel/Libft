@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:27:26 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/12 23:24:58 by obelkhad         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:00:09 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	**ft_trim_to_split(char *trimmed, char **splitted, char c)
 		}
 		start = end + 1;
 		end = start;
-	}	
+	}
 	splitted[wc] = 0;
 	free(trimmed);
 	return (splitted);

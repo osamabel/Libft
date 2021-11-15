@@ -1,6 +1,6 @@
 # ****************************** Compiler Options ******************************
 CC        := cc
-CFLAGS    := -Wall -Wextra -Werror
+CFLAGS    := -Wall -Wextra -Werror -g
 
 # ******************************* Other commands *******************************
 RM    := rm -f
