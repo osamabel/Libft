@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:03:10 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/13 19:48:10 by obelkhad         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:59:41 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_atoi(const char *str)
 	int					i;
 	int					minus;
 	unsigned long long	result;
+	int					is_long;
 
 	minus = 1;
 	result = 0;
@@ -46,11 +47,12 @@ int	ft_atoi(const char *str)
 		if (str[i++] == '-')
 			minus = -minus;
 	}
+	is_long = testlong(result,minus);
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + str[i++] - '0';
-		if (testlong(result, minus) != 1)
-			return (testlong(result, minus));
+		if (is_long != 1)
+			return (is_long);
 	}
 	return (result * minus);
 }
