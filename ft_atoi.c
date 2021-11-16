@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:03:10 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/16 08:57:08 by obelkhad         ###   ########.fr       */
+/*   Updated: 2021/11/16 11:55:55 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	ft_atoi(const char *str)
 		if (str[i++] == '-')
 			minus = -minus;
 	}
-	is_long = testlong(result, minus);
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + str[i++] - '0';
+		is_long = testlong(result, minus);
 		if (is_long != 1)
 			return (is_long);
 	}
