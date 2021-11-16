@@ -6,12 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:27:26 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/15 15:00:09 by obelkhad         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:22:59 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_wordcount(const char *s, char c)
 {
