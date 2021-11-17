@@ -5,86 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 11:27:26 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/16 14:22:59 by obelkhad         ###   ########.fr       */
+/*   Created: 2021/11/17 12:18:45 by obelkhad          #+#    #+#             */
+/*   Updated: 2021/11/17 12:22:09 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_wordcount(const char *s, char c)
+static int	wcount(char const *s, char c)
 {
-	int	start;
+	int	i;
 	int	n;
 
-	start = 0;
+	i = 0;
 	n = 0;
-	while (s[start])
+	while (s[i])
 	{
-		if (s[start] != c)
+		if (s[i] != c)
 		{
 			n++;
-			while (s[start] != c && s[start])
-				start++;
+			while (s[i] && s[i] != c)
+				i++;
 		}
 		else
-			start++;
+			i++;
 	}
 	return (n);
 }
 
-static int	free_splitted(char	**splitted, size_t wc)
+static int	spliting_problem(char **result, int n)
 {
-	if (!splitted[wc])
+	if (!result[n])
 	{
-		while (wc >= 0)
-			free(splitted[wc--]);
-		free (splitted);
+		while (n >= 0)
+			free (result[n--]);
+		free (result);
 		return (1);
 	}
 	return (0);
 }
 
-static char	**ft_trim_to_split(char *trimmed, char **splitted, char c)
+static char	**str_to_split(char **result, char const *str, char c)
 {
-	size_t	start;
-	size_t	end;
-	size_t	wc;
+	int	i;
+	int	j;
+	int	word;
 
-	start = 0;
-	end = 0;
-	wc = 0;
-	while (trimmed[start])
+	i = 0;
+	j = 0;
+	word = 0;
+	while (str[i])
 	{
-		if (trimmed[start] != c)
+		while (str[i] && str[i] == c)
+			i++;
+		j = i;
+		while (str[j] && str[j] != c)
+			j++;
+		if (i < j)
 		{
-			while (trimmed[end] != c && trimmed[end])
-				end++;
-			splitted[wc] = (char *)malloc((end - start + 1) * sizeof(char));
-			if (free_splitted(splitted, wc))
+			result[word] = (char *)malloc((j - i + 1) * sizeof(char));
+			if (spliting_problem(result, word))
 				return (0);
-			ft_strlcpy(splitted[wc++], trimmed + start, end - start + 1);
+			ft_strlcpy(result[word++], str + i, j - i + 1);
 		}
-		start = end + 1;
-		end = start;
+		i = j;
 	}
-	splitted[wc] = 0;
-	free(trimmed);
-	return (splitted);
+	result[word] = 0;
+	return (result);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**splitted;
-	char	*trimmed;
+	char	**split_str;
 
 	if (!s)
 		return (0);
-	trimmed = ft_strtrim(s, &c);
-	if (!trimmed)
+	split_str = NULL;
+	split_str = (char **) malloc((wcount(s, c) + 1) * sizeof(char *));
+	if (!split_str)
 		return (0);
-	splitted = (char **)malloc((ft_wordcount(trimmed, c) + 1) * sizeof(char *));
-	if (!splitted)
-		return (0);
-	return (ft_trim_to_split(trimmed, splitted, c));
+	return (str_to_split(split_str, s, c));
 }
